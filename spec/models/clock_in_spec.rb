@@ -7,6 +7,12 @@ RSpec.describe ClockIn do
   it { is_expected.to validate_presence_of(:clock_in_time) }
   it { is_expected.to validate_presence_of(:clock_out_time) }
 
+  it 'runs CalculateSleepTimeJob after create' do
+    ActiveJob::Base.queue_adapter = :test
+    create(:clock_in)
+    expect(CalculateSleepTimeJob).to have_been_enqueued
+  end
+
   describe '#clock_in_time_cannot_be_in_the_future' do
     let(:clock_in) { build(:clock_in, clock_in_time:) }
 

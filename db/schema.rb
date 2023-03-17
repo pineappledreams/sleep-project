@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_17_041116) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_17_055427) do
   create_table "clock_ins", force: :cascade do |t|
     t.integer "user_id", null: false
     t.datetime "clock_in_time"
     t.datetime "clock_out_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "total_time"
+    t.integer "sleep_time"
     t.index ["user_id"], name: "index_clock_ins_on_user_id"
   end
 

@@ -10,6 +10,8 @@ class ClockIn < ApplicationRecord
   validate :clock_out_time_cannot_be_in_the_future
   validate :clock_out_time_cannot_be_before_clock_in_time
 
+  after_create { CalculateSleepTimeJob.perform_later(self) }
+
   private
 
   def clock_in_time_cannot_be_in_the_future
