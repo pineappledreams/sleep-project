@@ -1,24 +1,36 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Quickstart
 
-Things you may want to cover:
+```
+bundle install
+bundle exec rails db:create
+bundle exec rails db:seed
+bundle exec rails s
+```
 
-* Ruby version
+## APIs you could try out
 
-* System dependencies
+NOTE: The current user is set to the first created user, so when you are creating/destroying stuff, it will be added in relation to the first user.
 
-* Configuration
+```
 
-* Database creation
+# See all clock ins of a user (you being number #1, of course)
+GET api/v1/users/:id/clock_ins
 
-* Database initialization
+# Create a clock in event
+# params clock_in_time [DateTime] clock in datetime
+# params clock_out_time [DateTime] clock out datetime
+POST api/v1/users/:id/clock_in
 
-* How to run the test suite
+# Delete a clock in event
+DELETE api/v1/users/:id/clock_in
 
-* Services (job queues, cache servers, search engines, etc.)
+# Friend/unfriend user
+POST api/v1/users/:id/friend
+DELETE api/v1/users/:id/unfriend
 
-* Deployment instructions
+# See the sleep records over the past week for their friends, ordered by the length of their sleep.
+GET api/v1/users/1/sleep_records/
 
-* ...
+```
