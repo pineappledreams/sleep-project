@@ -2,7 +2,10 @@
 
 class User < ApplicationRecord
   has_many :clock_ins, dependent: :destroy
+  has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships,
                      class_name: 'User',
-                     association_foreign_key: :friend_id
+                     foreign_key: :friend_id
+
+  validates :name, presence: true
 end

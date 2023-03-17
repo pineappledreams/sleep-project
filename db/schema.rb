@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_17_015509) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_17_041116) do
   create_table "clock_ins", force: :cascade do |t|
     t.integer "user_id", null: false
     t.datetime "clock_in_time"
     t.datetime "clock_out_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "total_time"
     t.index ["user_id"], name: "index_clock_ins_on_user_id"
   end
 
@@ -36,6 +37,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_17_015509) do
   end
 
   add_foreign_key "clock_ins", "users"
-  add_foreign_key "friendships", "friends"
   add_foreign_key "friendships", "users"
+  add_foreign_key "friendships", "users", column: "friend_id"
 end
